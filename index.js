@@ -1,45 +1,41 @@
-// 🟧 3. Calculadora de Média de Notas da Sala
+// 🟦 4. Loja Virtual — Carrinho de Compras
 
 // Objetivo:
-// Peça o nome da turma, depois pergunte o nome de cada aluno e sua nota. Ao final, calcule a média geral.
+// Solicite ao usuário produtos para o carrinho (nome e preço). Continue até ele parar. No final, 
+// exiba o valor total e a lista de itens.
 
-// Classificação: Fácil
-// Dica: Use arrays numéricos, soma, e divisão, com um loop.
+// Classificação: Médio
+// Dica: Arrays de objetos, Number(), laços de repetição.
 
+let PerguntaCompra = prompt('Deseja fazer alguma Compra ? (SIM/NAO)').toLowerCase()
+let compras = []
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+if (PerguntaCompra === 'sim') {
+  while (PerguntaCompra === 'sim') {
+    let nomeProduto = prompt('Escreva o nome do Produto (exe: Air Fryer)')    
+    let precoProduto = parseFloat(prompt(`Escreva o preço ${nomeProduto} (R$250,00)`))   
+    let perguntaNovaCompra = prompt('Deseja Comprar mais Coisas ? (SIM/NAO)')
 
-let PerguntaRegistros = prompt('Deseja Cadastrar alunos ? (SIM/NAO)').toLowerCase()
-let classe = []
-
-if (PerguntaRegistros === 'sim') {
-  while (PerguntaRegistros === 'sim') {
-    let perguntaAluno = prompt('Escreva o nome do Aluno Desejado (exe: Ana)')    
-    let perguntaNota = parseFloat(prompt(`Escreva a nota do aluno ${perguntaAluno} (exe: 10,0)`))   
-    let cadastraAlunos = prompt('Deseja Cadastrar Mais Alunos (SIM/NAO)')
-
-    let alunoNovos = {
-      aluno : perguntaAluno,
-      nota : perguntaNota
+    let novasCompras = {
+      nome : nomeProduto,
+      preco : precoProduto
     }
 
-    classe.push(alunoNovos)
+    compras.push(novasCompras)
     
-    if (cadastraAlunos == 'nao') {
-      alert('Voce nao quis cadastrar mais alunos !')
+    if (perguntaNovaCompra == 'nao') {
+      alert('Voce nao quis comprar mais nada !')
       break
     }
   }
 
-  let notaTotalTurma = classe.reduce((acumulador,itemAtual)=>{
-      return acumulador + itemAtual.nota
+  let precoTotal = compras.reduce((acumulador,itemAtual)=>{
+      return acumulador += itemAtual.preco
     }, 0)
-
-    let mediaTurma = notaTotalTurma / classe.length;
-    alert(`Soma das notas totais da turma foi  ${mediaTurma.toFixed(2)}`) 
+    
+    alert(`Soma dos Produtos Comprados foi ${precoTotal.toFixed(2)}`) 
 
 }else{
-  alert('Voce Escolheu nao Cadastrar !')
+  alert('Voce nao quis Comprar mais nada !')
   alert(' Finalizando ...')
 }
-
